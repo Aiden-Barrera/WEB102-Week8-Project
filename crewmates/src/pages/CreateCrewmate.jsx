@@ -31,7 +31,7 @@ const CreateCrewmate = () => {
             .select()
 
         alert("Character Created")
-        navigate("/")
+        navigate("/show")
     }
 
     return (
