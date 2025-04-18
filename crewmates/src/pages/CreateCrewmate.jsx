@@ -1,9 +1,11 @@
 import { useState } from "react"
 import "./../App.css"
 import { supabase } from './../Client'
+import { useParams, useNavigate } from "react-router-dom"
 
 
 const CreateCrewmate = () => {
+    const navigate = useNavigate()
     const [crewmateInfo, setCrewmateInfo] = useState({
         name: "",
         health: "",
@@ -29,7 +31,7 @@ const CreateCrewmate = () => {
             .select()
 
         alert("Character Created")
-        window.location = "/"
+        navigate("/")
     }
 
     return (
