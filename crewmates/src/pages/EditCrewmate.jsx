@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import "./../App.css"
 import { supabase } from './../Client'
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 
 const EditCrewmate = () => {
+    const navigate = useNavigate()
     const {crew_id} = useParams()
     const [crewmateInfo, setCrewmateInfo] = useState({
         name: "",
@@ -50,7 +51,7 @@ const EditCrewmate = () => {
             .eq("crew_id", crew_id)
 
         alert(`${crewmateInfo.name} Successfully Updated`)
-        window.location = "/"
+        navigate("/show")
     }
 
     const deleteCharacter = async () => {
@@ -59,7 +60,7 @@ const EditCrewmate = () => {
             .eq('crew_id', crew_id)
         
         alert(`${crewmateInfo.name} Successfully Deleted`)
-        window.location = "/"
+        navigate("/show")
     }
 
     return (

@@ -39,7 +39,7 @@ const CreateCrewmate = () => {
             justifyContent: "center", // centers horizontally
             alignItems: "center",
             width: "100%",
-            height: "100vh"    
+            height: "80vh"    
         }}>
             <div className="card" style={{padding: "20px"}}>
                 <h1>Create your Character</h1>
