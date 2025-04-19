@@ -54,14 +54,17 @@ const EditCrewmate = () => {
         navigate("/show")
     }
 
-    const deleteCharacter = async () => {
+    const deleteCharacter = async (e) => {
+        e.preventDefault()
         await supabase.from('CrewmateInfo')
             .delete()
             .eq('crew_id', crew_id)
         
-        alert(`${crewmateInfo.name} Successfully Deleted`)
+        alert(`Successfully Deleted`)
         navigate("/show")
     }
+
+    if (!crewmateInfo) return <h2>Loading...</h2>
 
     return (
         <div style={{
@@ -73,19 +76,19 @@ const EditCrewmate = () => {
             height: "100vh"    
         }}>
             <div className="card" style={{padding: "20px"}}>
-                <h1>Edit {crewmateInfo.name}</h1>
+                <h1>Edit {crewmateInfo?.name}</h1>
                 <form>
                     <div style={{display: "flex", justifyItems: "center", alignItems: "flex-start", gap: "35px"}}>
 
                         <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", gap: "10px"}}>
                             <label htmlFor="name" style={{fontSize: "32px", fontWeight: "700"}}>Name:</label><br/>
-                            <input type="text" id="name" name="name" placeholder={crewmateInfo.name} onChange={handleChange}/><br/>
+                            <input type="text" id="name" name="name" placeholder={crewmateInfo?.name} onChange={handleChange}/><br/>
                             <br/>
                         </div>
                         
                         <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", gap: "10px"}}>
                             <label htmlFor="health" style={{fontSize: "32px", fontWeight: "700"}}>Health:</label><br/>
-                            <input type="number" id="health" name="health" placeholder={crewmateInfo.health} onChange={handleChange}/><br/>
+                            <input type="number" id="health" name="health" placeholder={crewmateInfo?.health} onChange={handleChange}/><br/>
                             <br/>
                         </div>
                         
@@ -94,7 +97,7 @@ const EditCrewmate = () => {
                             <div style={{display: "flex", flexDirection: "column", justifyContent: 'center', alignContent: 'center', gap: "5px"}}>
                             {["Barbarian", "Bard", "Wizard", "Monk", "Paladin"].map((cls) => (
                                 <label key={cls} style={{display: "flex", gap: "10px", fontSize: "18px", fontWeight: "700"}}>
-                                <input type="radio" name="class" value={cls} checked={crewmateInfo.class === cls} onChange={handleChange} /><br/>
+                                <input type="radio" name="class" value={cls} checked={crewmateInfo?.class === cls} onChange={handleChange} /><br/>
                                     <span>{cls}</span>
                                 </label>
                             ))}
